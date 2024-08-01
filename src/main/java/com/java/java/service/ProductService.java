@@ -8,9 +8,9 @@ import java.util.List;
 
 @Service
 public interface ProductService {
-    Product create(MultipartFile file, String name, String description);
+    Product create(MultipartFile file, String name, String color, Double price, String description);
 
-    Product update(MultipartFile file, Long productId, String name, String description);
+    Product update(MultipartFile file, Long productId, String name, String color, Double price, String description);
 
     Product delete(Long productId);
 

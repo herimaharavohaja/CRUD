@@ -28,17 +28,19 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public Product create(MultipartFile file, String name, String description) {
+    public Product create(MultipartFile file, String name, String color, Double price, String description) {
         String url = fileService.saveFile(file);
         Product product = new Product();
         product.setDescription(description);
         product.setImage(url);
         product.setName(name);
+        product.setColor(color);
+        product.setPrice(price);
         return productRepository.save(product);
     }
 
     @Override
-    public Product update(MultipartFile file, Long productId, String name, String description) {
+    public Product update(MultipartFile file, Long productId, String name, String color, Double price, String description) {
         Optional<Product> optionalProduct = this.productRepository.findById(productId);
 
         if (optionalProduct.isPresent()) {
@@ -52,6 +54,8 @@ public class ProductServiceImpl implements ProductService {
             product.setDescription(description);
             product.setImage(url);
             product.setName(name);
+            product.setColor(color);
+            product.setPrice(price);
             return productRepository.save(product);
         }
         throw new NotFoundException("product not found");
